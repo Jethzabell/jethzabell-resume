@@ -1,0 +1,447 @@
+<script lang="ts">
+	import { onMount } from 'svelte';
+	
+	let isScrolled = false;
+	let currentLanguage: 'en' | 'es' = 'en';
+	
+	const handleScroll = () => {
+		isScrolled = window.scrollY > 50;
+	};
+	
+	const toggleLanguage = () => {
+		currentLanguage = currentLanguage === 'en' ? 'es' : 'en';
+	};
+	
+	onMount(() => {
+		window.addEventListener('scroll', handleScroll);
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	});
+	
+	const translations = {
+		en: {
+			nav: {
+				home: 'Home',
+				about: 'About',
+				skills: 'Skills',
+				experience: 'Experience',
+				education: 'Education',
+				contact: 'Contact'
+			},
+			hero: {
+				imJethzabell: "I'm Jethzabell Medina",
+				techLeadEngineer: 'Tech Lead Engineer',
+				msComputerScience: 'M.S. Computer Science',
+				bilingual: 'Bilingual (English/Spanish)',
+				goDistributed: 'Go (Golang) & Distributed Systems',
+				specialty: 'SPECIALTY:',
+				companies: 'Companies I\'ve worked with:',
+				yearsExperience: 'Years of Experience',
+				location: 'Location',
+				website: 'Website',
+				github: 'GitHub'
+			},
+			aboutMe: 'I\'m a Tech Lead Engineer with over 11 years of experience in distributed systems, microservices, and cloud technologies. I specialize in Golang, Python, Java, and modern development practices, leading teams to deliver scalable, high-performance solutions.',
+			aboutMe2: 'My expertise spans from hands-on development to technical leadership, with a proven track record in CI/CD automation, cloud optimization, and generative AI integration. I\'ve led teams at HCL Software and Tech and IBM, delivering solutions that save millions in cloud resources while improving efficiency.',
+			aboutMe3: 'I hold an M.S. in Computer Science with a 4.00 GPA and am passionate about mentoring, problem-solving, and staying at the forefront of technology innovation.',
+			yearsExperience: 'Years of Experience',
+			cloudSavings: 'Cloud Savings',
+			gpa: 'GPA',
+			about: 'About',
+			skills: 'Skills & Technologies',
+			experience: 'Experience',
+			education: 'Education',
+			contact: 'Contact',
+			website: 'Website',
+			github: 'GitHub',
+			copyright: 'Copyright © 2025 - All rights reserved'
+		},
+		es: {
+			nav: {
+				home: 'Inicio',
+				about: 'Acerca de',
+				skills: 'Habilidades',
+				experience: 'Experiencia',
+				education: 'Educación',
+				contact: 'Contacto'
+			},
+			hero: {
+				imJethzabell: 'Soy Jethzabell Medina',
+				techLeadEngineer: 'Ingeniera Tech Lead',
+				msComputerScience: 'M.S. Ciencias de la Computación',
+				bilingual: 'Bilingüe (Inglés/Español)',
+				goDistributed: 'Go (Golang) y Sistemas Distribuidos',
+				specialty: 'ESPECIALIDAD:',
+				companies: 'Empresas con las que he trabajado:',
+				yearsExperience: 'Años de Experiencia',
+				location: 'Ubicación',
+				website: 'Sitio Web',
+				github: 'GitHub'
+			},
+			aboutMe: 'Soy una Ingeniera Tech Lead con más de 11 años de experiencia en sistemas distribuidos, microservicios y tecnologías en la nube. Me especializo en Golang, Python, Java y prácticas modernas de desarrollo, liderando equipos para entregar soluciones escalables y de alto rendimiento.',
+			aboutMe2: 'Mi experiencia abarca desde el desarrollo práctico hasta el liderazgo técnico, con un historial comprobado en automatización CI/CD, optimización en la nube e integración de IA generativa. He liderado equipos en HCL Software y HCLTech, entregando soluciones que ahorran millones en recursos en la nube mientras mejoran la eficiencia.',
+			aboutMe3: 'Tengo una Maestría en Ciencias de la Computación con un GPA de 4.00 y me apasiona la mentoría, la resolución de problemas y mantenerme a la vanguardia de la innovación tecnológica.',
+			yearsExperience: 'Años de Experiencia',
+			cloudSavings: 'Ahorros en la Nube',
+			gpa: 'GPA',
+			about: 'Acerca de',
+			skills: 'Habilidades y Tecnologías',
+			experience: 'Experiencia',
+			education: 'Educación',
+			contact: 'Contacto',
+			website: 'Sitio Web',
+			github: 'GitHub',
+			copyright: 'Copyright © 2025 - Todos los derechos reservados'
+		}
+	};
+</script>
+
+<!-- Sticky Header -->
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 {isScrolled ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'}">
+	<nav class="container-custom py-4">
+		<div class="flex items-center justify-between">
+			<div class="text-2xl font-bold text-white">
+				JM
+			</div>
+			<div class="hidden md:flex items-center space-x-8">
+				<a href="#home" class="text-gray-300 hover:text-white transition-colors">{translations[currentLanguage].nav.home}</a>
+				<a href="#about" class="text-gray-300 hover:text-white transition-colors">{translations[currentLanguage].nav.about}</a>
+				<a href="#skills" class="text-gray-300 hover:text-white transition-colors">{translations[currentLanguage].nav.skills}</a>
+				<a href="#experience" class="text-gray-300 hover:text-white transition-colors">{translations[currentLanguage].nav.experience}</a>
+				<a href="#education" class="text-gray-300 hover:text-white transition-colors">{translations[currentLanguage].nav.education}</a>
+				<a href="#contact" class="text-gray-300 hover:text-white transition-colors">{translations[currentLanguage].nav.contact}</a>
+				<button 
+					on:click={toggleLanguage}
+					class="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+				>
+					{currentLanguage === 'en' ? 'ES' : 'EN'}
+				</button>
+			</div>
+		</div>
+	</nav>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
+	<div class="container-custom text-center">
+		<div class="max-w-4xl mx-auto">
+			<!-- Profile Card -->
+			<div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 mb-8 border border-gray-700">
+				<div class="flex flex-col lg:flex-row items-center gap-8">
+					<!-- Profile Photo -->
+					<div class="flex-shrink-0">
+						<img 
+							src="/jethzabell.jpg" 
+							alt="Jethzabell Medina" 
+							class="w-48 h-48 rounded-full object-cover border-4 border-blue-500 shadow-2xl"
+						/>
+					</div>
+					
+					<!-- Info -->
+					<div class="flex-1 text-left">
+						<h1 class="text-4xl lg:text-5xl font-bold text-white mb-4">
+							{translations[currentLanguage].hero.imJethzabell}
+						</h1>
+						<p class="text-2xl lg:text-3xl font-semibold text-emerald-400 mb-2">
+							{translations[currentLanguage].hero.techLeadEngineer}
+						</p>
+						<p class="text-xl text-gray-300 mb-4">{translations[currentLanguage].hero.msComputerScience}</p>
+						<p class="text-lg text-gray-300 mb-6">{translations[currentLanguage].hero.bilingual}</p>
+						
+						<!-- Specialty -->
+						<div class="mb-4">
+							<p class="text-sm text-gray-400 mb-2">{translations[currentLanguage].hero.specialty}</p>
+							<span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+								{translations[currentLanguage].hero.goDistributed}
+							</span>
+						</div>
+						
+						<!-- Companies -->
+						<div class="mb-6">
+							<p class="text-sm text-gray-400 mb-2">{translations[currentLanguage].hero.companies}</p>
+							<div class="flex flex-wrap gap-2">
+								<a href="https://www.redhat.com" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition-colors">Red Hat</a>
+								<span class="text-gray-500">•</span>
+								<a href="https://www.ibm.com" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition-colors">IBM</a>
+								<span class="text-gray-500">•</span>
+								<a href="https://www.hcl-software.com" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition-colors">HCL Software</a>
+								<span class="text-gray-500">•</span>
+								<a href="https://www.hcltech.com" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition-colors">HCL Tech</a>
+								<span class="text-gray-500">•</span>
+								<a href="https://www.usace.army.mil" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition-colors">US Army Corps Engineers</a>
+								<span class="text-gray-500">•</span>
+								<a href="#" class="text-blue-400 hover:text-blue-300 transition-colors">Medirec Inc</a>
+								<span class="text-gray-500">•</span>
+								<a href="https://www.lockheedmartin.com" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition-colors">Lockheed Martin</a>
+							</div>
+						</div>
+						
+						<!-- Stats -->
+						<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+							<div class="bg-gray-700/50 rounded-lg p-4">
+								<p class="text-2xl font-bold text-white">11+</p>
+								<p class="text-sm text-gray-400">{translations[currentLanguage].yearsExperience}</p>
+							</div>
+							<div class="bg-gray-700/50 rounded-lg p-4">
+								<p class="text-2xl font-bold text-emerald-400">$1.5M</p>
+								<p class="text-sm text-gray-400">{translations[currentLanguage].cloudSavings}</p>
+							</div>
+							<div class="bg-gray-700/50 rounded-lg p-4">
+								<p class="text-2xl font-bold text-blue-400">4.00</p>
+								<p class="text-sm text-gray-400">{translations[currentLanguage].gpa}</p>
+							</div>
+						</div>
+						
+						<!-- Social Links -->
+						<div class="flex justify-center space-x-4">
+							<a href="https://www.linkedin.com/in/jethzabell-medina/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition-colors" aria-label="LinkedIn">
+								<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+									<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+								</svg>
+							</a>
+							<a href="https://github.com/jethzabell" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors" aria-label="GitHub">
+								<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+									<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+								</svg>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Download Resume -->
+			<div class="text-center">
+				<a 
+					href="/JethzabellMedinaResume2025.pdf" 
+					target="_blank" 
+					class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+				>
+					<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+					</svg>
+					Download Resume
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="section-padding bg-gray-800">
+	<div class="container-custom">
+		<h2 class="text-3xl font-bold text-white text-center mb-12">{translations[currentLanguage].about}</h2>
+		<div class="max-w-4xl mx-auto">
+			<div>
+				<p class="text-lg leading-relaxed text-gray-300 mb-6">
+					{translations[currentLanguage].aboutMe}
+				</p>
+				<p class="text-lg leading-relaxed text-gray-300 mb-6">
+					{translations[currentLanguage].aboutMe2}
+				</p>
+				<p class="text-lg leading-relaxed text-gray-300">
+					{translations[currentLanguage].aboutMe3}
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="section-padding bg-gray-900">
+	<div class="container-custom">
+		<h2 class="text-3xl font-bold text-white text-center mb-12">{translations[currentLanguage].skills}</h2>
+		
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+			<!-- Tech Leadership -->
+			<div class="bg-gray-800 rounded-lg p-6">
+				<h3 class="text-xl font-semibold text-blue-400 mb-4">Tech Leadership</h3>
+				<div class="space-y-2">
+					<span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">Tech Leadership</span>
+					<span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">Team Leadership</span>
+					<span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">Mentoring</span>
+					<span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">Code Reviews</span>
+					<span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">Agile Methodologies</span>
+				</div>
+			</div>
+			
+			<!-- Backend & Languages -->
+			<div class="bg-gray-800 rounded-lg p-6">
+				<h3 class="text-xl font-semibold text-blue-400 mb-4">Backend & Languages</h3>
+				<div class="space-y-2">
+					<span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">Go (Golang)</span>
+					<span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">Python</span>
+					<span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">Java</span>
+					<span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">Spring Boot</span>
+					<span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">RESTful APIs</span>
+					<span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">MongoDB</span>
+					<span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">Firebase</span>
+					<span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">Testing (Unit, Integration, Performance)</span>
+				</div>
+			</div>
+			
+			<!-- Architecture & Systems -->
+			<div class="bg-gray-800 rounded-lg p-6">
+				<h3 class="text-xl font-semibold text-blue-400 mb-4">Architecture & Systems</h3>
+				<div class="space-y-2">
+					<span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">Distributed Systems & Architecture</span>
+					<span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">Performance & Scalability</span>
+					<span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">DataPower & API Connect</span>
+				</div>
+			</div>
+			
+			<!-- DevOps & Tools -->
+			<div class="bg-gray-800 rounded-lg p-6">
+				<h3 class="text-xl font-semibold text-blue-400 mb-4">DevOps & Tools</h3>
+				<div class="space-y-2">
+					<span class="inline-block bg-emerald-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">CI/CD</span>
+					<span class="inline-block bg-emerald-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">Git</span>
+					<span class="inline-block bg-emerald-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">Jenkins</span>
+					<span class="inline-block bg-emerald-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">GitLab</span>
+					<span class="inline-block bg-emerald-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">GitHub</span>
+					<span class="inline-block bg-emerald-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">GCP</span>
+					<span class="inline-block bg-emerald-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">Helm</span>
+					<span class="inline-block bg-emerald-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">Linux</span>
+					<span class="inline-block bg-emerald-600 text-white px-3 py-1 rounded-full text-sm text-center w-full">Shell Scripting</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience" class="section-padding bg-gray-800">
+	<div class="container-custom">
+		<h2 class="text-3xl font-bold text-white text-center mb-12">{translations[currentLanguage].experience}</h2>
+		
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+			<!-- HCL Software -->
+			<div class="bg-gray-700 rounded-lg p-6">
+				<div class="flex justify-between items-start mb-4">
+					<div>
+						<h3 class="text-xl font-semibold text-white">HCL Software</h3>
+						<p class="text-blue-400">Lead Senior Development Engineer</p>
+						<p class="text-gray-400">Remote</p>
+					</div>
+					<span class="text-sm text-gray-400">2021 - Present</span>
+				</div>
+				<div class="space-y-3">
+					<div class="bg-gray-600 rounded p-3">
+						<h4 class="font-semibold text-white mb-2">Leadership & Team Management</h4>
+						<p class="text-gray-300 text-sm">Led and mentored a team of software engineers, fostering a culture of innovation and accountability</p>
+					</div>
+					<div class="bg-gray-600 rounded p-3">
+						<h4 class="font-semibold text-white mb-2">CI/CD & Automation</h4>
+						<p class="text-gray-300 text-sm">Automated CI/CD processes, improving deployment efficiency by 80% and designing GitLab pipelines</p>
+					</div>
+					<div class="bg-gray-600 rounded p-3">
+						<h4 class="font-semibold text-white mb-2">Cost Management</h4>
+						<p class="text-gray-300 text-sm">Developed tools to monitor user commitment and reduce resource usage in cloud environments by 65%</p>
+					</div>
+				</div>
+			</div>
+			
+			<!-- IBM -->
+			<div class="bg-gray-700 rounded-lg p-6">
+				<div class="flex justify-between items-start mb-4">
+					<div>
+						<h3 class="text-xl font-semibold text-white">IBM</h3>
+						<p class="text-blue-400">Senior Software Engineer III, Tech Lead</p>
+						<p class="text-gray-400">Remote</p>
+					</div>
+					<span class="text-sm text-gray-400">2019 - 2021</span>
+				</div>
+				<div class="space-y-3">
+					<div class="bg-gray-600 rounded p-3">
+						<h4 class="font-semibold text-white mb-2">Generative AI</h4>
+						<p class="text-gray-300 text-sm">Built a chatbot using Vertex AI, deploying versions with OpenAI API and combining external LLM resources</p>
+					</div>
+					<div class="bg-gray-600 rounded p-3">
+						<h4 class="font-semibold text-white mb-2">Performance & Automation</h4>
+						<p class="text-gray-300 text-sm">Created a Go script to calculate service deployment times, saving $1M-$1.5M in cloud resources</p>
+					</div>
+					<div class="bg-gray-600 rounded p-3">
+						<h4 class="font-semibold text-white mb-2">Security & Compliance</h4>
+						<p class="text-gray-300 text-sm">Proactively identified vulnerabilities using WhiteSource/Mend and Trivy, developing microservices in Python</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Education Section -->
+<section id="education" class="section-padding bg-gray-900">
+	<div class="container-custom">
+		<h2 class="text-3xl font-bold text-white text-center mb-12">{translations[currentLanguage].education}</h2>
+		
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+			<!-- Master's Degree -->
+			<div class="bg-gray-800 rounded-lg p-6">
+				<h3 class="text-xl font-semibold text-white mb-2">M.S. Computer Science</h3>
+				<p class="text-blue-400 mb-2">University of Puerto Rico, US</p>
+				<p class="text-gray-400 mb-4">2020</p>
+				<p class="text-gray-300 text-sm">Focused on advanced computer science concepts, distributed systems, and software engineering principles.</p>
+			</div>
+			
+			<!-- Bachelor's Degree -->
+			<div class="bg-gray-800 rounded-lg p-6">
+				<h3 class="text-xl font-semibold text-white mb-2">B.S. Mathematics and Computer Science</h3>
+				<p class="text-blue-400 mb-2">University of Puerto Rico, US</p>
+				<p class="text-gray-400 mb-4">2015</p>
+				<p class="text-gray-300 text-sm">Dual degree program combining mathematical theory with practical computer science applications. Strong foundation in algorithms, data structures, and mathematical modeling.</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="section-padding bg-gray-800">
+	<div class="container-custom">
+		<h2 class="text-3xl font-bold text-white text-center mb-12">{translations[currentLanguage].contact}</h2>
+		
+		<div class="max-w-2xl mx-auto">
+			<div class="bg-gray-700 rounded-lg p-8">
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+					<div>
+						<h3 class="text-xl font-semibold text-white mb-4">Get In Touch</h3>
+						<div class="space-y-3">
+							<div class="flex items-center">
+								<svg class="w-5 h-5 text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+								</svg>
+								<span class="text-gray-300">Durham-Raleigh-RTP, NC</span>
+							</div>
+							<div class="flex items-center">
+								<svg class="w-5 h-5 text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"/>
+								</svg>
+								<a href="https://jethzabell.com" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition-colors">jethzabell.com</a>
+							</div>
+							<div class="flex items-center">
+								<svg class="w-5 h-5 text-blue-400 mr-3" fill="currentColor" viewBox="0 0 24 24">
+									<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+								</svg>
+								<a href="https://www.linkedin.com/in/jethzabell-medina/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition-colors">jethzabell-medina</a>
+							</div>
+							<div class="flex items-center">
+								<svg class="w-5 h-5 text-blue-400 mr-3" fill="currentColor" viewBox="0 0 24 24">
+									<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+								</svg>
+								<a href="https://github.com/jethzabell" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition-colors">github.com/jethzabell</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 py-8">
+	<div class="container-custom text-center">
+		<p class="text-gray-400">{translations[currentLanguage].copyright}</p>
+	</div>
+</footer>
